@@ -18,11 +18,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS: STRICTLY for frontend URL
-const CLIENT_URL = 'https://niyamr-ai-compliance-2uq2.vercel.app';
+const allowedOrigins = [
+  'https://niyamr-ai-compliance-2uq2.vercel.app',
+  'https://niyamr-ai-complianc-2.onrender.com'
+];
+
 app.use(cors({
-  origin: CLIENT_URL, 
-  credentials: true 
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
+
 app.get('/', (req, res) => {
   res.send("Server is running successfully!");
 });
