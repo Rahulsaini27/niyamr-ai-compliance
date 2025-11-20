@@ -18,10 +18,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS: STRICTLY for frontend URL
+const CLIENT_URL = 'http://localhost:5173';
 app.use(cors({
-  origin: process.env.CLIENT_URL, 
+  origin: CLIENT_URL, 
   credentials: true 
 }));
+app.get('/', (req, res) => {
+  res.send("Server is running successfully!");
+});
+
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
