@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS: STRICTLY for frontend URL
-const CLIENT_URL = 'http://localhost:5173';
+const CLIENT_URL = 'https://niyamr-ai-compliance-2uq2.vercel.app';
 app.use(cors({
   origin: CLIENT_URL, 
   credentials: true 
